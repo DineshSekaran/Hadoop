@@ -1,0 +1,16 @@
+hdfs-site.xml
+core-site.xml
+yarn-site.xml
+
+#View all hdfs files:
+hdfs dfs
+
+# List the root HDFS directory #
+hdfs dfs -ls  /
+
+# List a specific directory #
+hdfs dfs -ls /test
+
+# List Recursively #
+hdfs dfs -ls -R /
+
