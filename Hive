@@ -83,3 +83,10 @@ Storage Desc Params:
 	field.delim         	,                   
 	serialization.format	,    
 
+-----------------------------------------------------
+check file in hdfs location
+dfs -put /home/... /hiveexercises;
+dfs -ls /hiveexercises;
+---------------------------------------------------------
+#Load Data to tables
+load data inpath '/hiveexercises/orders.txt' into table orders;
