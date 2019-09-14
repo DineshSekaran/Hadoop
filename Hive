@@ -1,3 +1,4 @@
+#Database
 show databases;
 
 create database exercises;
@@ -5,3 +6,80 @@ create database exercises;
 use exercises;
 
 show tables;
+---------------------------------------------------------------------
+# Working with MANAGED tables 
+create table orders (order_id int, customer_id int, order_date date, amount float) 
+row format DELIMITED 
+fields terminated by ',' 
+stored as textfile;
+-------------------------------------------------------------------------
+show create table orders:
+CREATE TABLE `orders`(
+  `order_id` int, 
+  `customer_id` int, 
+  `order_date` date, 
+  `amount` float)
+ROW FORMAT SERDE 
+  'org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe' 
+WITH SERDEPROPERTIES ( 
+  'field.delim'=',', 
+  'serialization.format'=',') 
+STORED AS INPUTFORMAT 
+  'org.apache.hadoop.mapred.TextInputFormat' 
+OUTPUTFORMAT 
+  'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
+LOCATION
+  'hdfs://localhost:8020/user/hive/warehouse/exercises.db/orders'
+TBLPROPERTIES (
+  'COLUMN_STATS_ACCURATE'='{\"BASIC_STATS\":\"true\"}', 
+  'numFiles'='0', 
+  'numRows'='0', 
+  'rawDataSize'='0', 
+  'totalSize'='0', 
+  'transient_lastDdlTime'='1568469784')
+
+-------------------------------------------------------------------------
+desc orders:
+--ony column and data type
+# col_name            	data_type  
+order_id            	int                 	                    
+customer_id         	int                 	                    
+order_date          	date                	                    
+amount              	float  
+-------------------------------------------------------------------------
+describe Formatted orders;
+# col_name            	data_type           	comment             
+	 	 
+order_id            	int                 	                    
+customer_id         	int                 	                    
+order_date          	date                	                    
+amount              	float               	                    
+	 	 
+# Detailed Table Information	 	 
+Database:           	exercises           	 
+Owner:              	jpasolutions        	 
+CreateTime:         	Sat Sep 14 07:03:04 PDT 2019	 
+LastAccessTime:     	UNKNOWN             	 
+Retention:          	0                   	 
+Location:           	hdfs://localhost:8020/user/hive/warehouse/exercises.db/orders	 
+Table Type:         	MANAGED_TABLE       	 
+Table Parameters:	 	 
+	COLUMN_STATS_ACCURATE	{\"BASIC_STATS\":\"true\"}
+	numFiles            	0                   
+	numRows             	0                   
+	rawDataSize         	0                   
+	totalSize           	0                   
+	transient_lastDdlTime	1568469784          
+	 	 
+# Storage Information	 	 
+SerDe Library:      	org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe	 
+InputFormat:        	org.apache.hadoop.mapred.TextInputFormat	 
+OutputFormat:       	org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat	 
+Compressed:         	No                  	 
+Num Buckets:        	-1                  	 
+Bucket Columns:     	[]                  	 
+Sort Columns:       	[]                  	 
+Storage Desc Params:	 	 
+	field.delim         	,                   
+	serialization.format	,    
+
