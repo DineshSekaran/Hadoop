@@ -14,3 +14,8 @@ hdfs dfs -ls /test
 # List Recursively #
 hdfs dfs -ls -R /
 
+# to check file count rows
+hdfs dfs -cat /hiveexercises2 |wc -l;
+
+#distcp
+
