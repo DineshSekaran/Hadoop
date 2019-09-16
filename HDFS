@@ -9,7 +9,7 @@ hdfs dfs
 hdfs dfs -ls  /
 
 # List a specific directory #
-hdfs dfs -ls /test
+hdfs dfs -ls /directory
 
 # List Recursively #
 hdfs dfs -ls -R /
@@ -17,5 +17,10 @@ hdfs dfs -ls -R /
 # to check file count rows
 hdfs dfs -cat /hiveexercises2 |wc -l;
 
+# Delete a file #
+hdfs dfs -rm /filemname
+
 #distcp
 
+# Create a directory #
+hdfs dfs -mkdir /test
