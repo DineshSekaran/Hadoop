@@ -1,3 +1,18 @@
+FileFormat:
+Text File is a default storage format. You can use the text format to interchange the data with other client application. 
+Data is stored in lines, with each line being a record. Each lines are terminated by a newline character (\n).
+
+Sequence File stored in a binary storage format consisting of binary key value pairs.
+
+RC File stores columns of a table in a record columnar format rather than row oriented fashion  and provides considerable compression .
+
+AVRO File open source project that provides data serialization and data exchange services for Hadoop.
+
+ORC File stands for Optimized Row Columnar file format. 
+
+Parquet File is a column-oriented binary file format. The parquet is highly efficient for the types of large-scale queries. 
+-------------------------------------------------------------------------------------------
+
 #Database
 show databases;
 
@@ -92,7 +107,7 @@ dfs -ls /hiveexercises;
 load data inpath '/hiveexercises/orders.txt' into table orders;
 
 ---------------------------------------------------------------------
-# To handle the mainly for csv file format
+# To handle the mainly for csv file format 
 CREATE EXTERNAL TABLE myopencsvtable (
    col1 string,
    col2 string,
@@ -117,6 +132,22 @@ create table customers_copy as select * from customers;
 | Dropping MANAGED tables |
 +-------------------------+
 
-Truncate table tablename;
+Truncate table tablename;  data purge alone
 
-drop table tablename;
+drop table tablename; Both table structure and data path everything purged.
+---------------------------------------------------------------------
+EXTERNAL TABLE
+
+create EXTERNAL table employees (employee_id int, name string) 
+row format DELIMITED 
+fields terminated by '|' 
+stored as textfile
+LOCATION '/employees';
+
++-------------------------+
+| Dropping MANAGED tables |
++-------------------------+
+
+Truncate table tablename;  data purge alone
+
+drop table tablename; Both table structure and data path everything purged.
