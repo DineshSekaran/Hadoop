@@ -90,3 +90,22 @@ dfs -ls /hiveexercises;
 ---------------------------------------------------------
 #Load Data to tables
 load data inpath '/hiveexercises/orders.txt' into table orders;
+
+---------------------------------------------------------------------
+# To handle the mainly for csv file format
+CREATE EXTERNAL TABLE myopencsvtable (
+   col1 string,
+   col2 string,
+   col3 string,
+   col4 string
+)
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
+WITH SERDEPROPERTIES (
+   'separatorChar' = ',',
+   'quoteChar' = '"',
+   'escapeChar' = '\\'
+   )
+STORED AS TEXTFILE
+LOCATION 's3://location/of/csv/'; can be anything based on our project
+
+-
