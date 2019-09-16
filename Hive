@@ -148,6 +148,9 @@ LOCATION '/employees';
 | Dropping MANAGED tables |
 +-------------------------+
 
-Truncate table tablename;  data purge alone
+Truncate table tablename;  Cannot truncate non-managed table.
 
-drop table tablename; Both table structure and data path everything purged.
+drop table tablename; Table structure deleted but data/files remains in same path.
+--------------------------------------------------------------------------------------------
+
+Managed tables with PARTITIONS 
