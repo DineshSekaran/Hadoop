@@ -2,6 +2,15 @@ hdfs-site.xml
 core-site.xml
 yarn-site.xml
 
+Daemon:
+Namenode
+Datanode
+Secondarynamenode
+
+Node Manager
+Resource Manager
+
+
 #View all hdfs files:
 hdfs dfs
 
