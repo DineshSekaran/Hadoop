@@ -108,4 +108,15 @@ WITH SERDEPROPERTIES (
 STORED AS TEXTFILE
 LOCATION 's3://location/of/csv/'; can be anything based on our project
 
--
+-----------------------------------------------------------------------
+#CTAS create table as same/copy
+create table customers_copy as select * from customers;
+----------------------------------------------------------------
+
++-------------------------+
+| Dropping MANAGED tables |
++-------------------------+
+
+Truncate table tablename;
+
+drop table tablename;
