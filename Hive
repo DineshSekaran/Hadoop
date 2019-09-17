@@ -154,3 +154,38 @@ drop table tablename; Table structure deleted but data/files remains in same pat
 --------------------------------------------------------------------------------------------
 
 Managed tables with PARTITIONS 
+
+create table tbl_a (field1 int, field2 string, field3 string, field4 string) 
+PARTITIONED BY (alphabet char(1)) 
+row format SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
+stored as textfile;
+
+load data local inpath 'files/sour1.txt' into table tbl_a PARTITION (alphabet='a'); 
+#sour1.txt file will be tagged to alphabet='a' irrespective any data.
+
+load data local inpath 'files/sour2.txt' into table tbl_a PARTITION (alphabet='b');
+
+create table tbl_b (closing_value BIGINT, variation DOUBLE, username STRING)
+PARTITIONED BY (year INT, month INT, DAY INT) 
+row format DELIMITED 
+fields terminated by '|' stored as textfile;
+
+load data local inpath '/files/unique_1.txt' into table tbl_b PARTITION (year=2015, month=03, day=31);
+#it will create 3 sub folder to store data 
+
+----------------------------------------------
+Step1: Creating Stage table 
+create table tbl_partition (id INT, name STRING,dept String,year char(5),month char(2)) 
+row format DELIMITED fields terminated by ',' 
+stored as textfile
+tblproperties ("skip.header.line.count"="1");
+
+Step2:
+load data local inpath '/files/dinesh_data.txt' into table tbl_partition;
+
+Step3:
+create table tbl_partition_1 (id INT,name STRING,dept String,year char(5),month char(2))
+PARTITIONED by (year int,month int) 
+row format delimited 
+fields terminated by ',' 
+stored as textfile ;
