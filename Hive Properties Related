@@ -1,0 +1,14 @@
+To dispaly header in hive terminal
+
+ set hive.cli.print.header=true;
+ 
+select * from customers;
+OK
+customers.customer_id	customers.customer_name	customers.total_orders
+1	Chris	25
+2	John	20
+3	Martin	30
+------------------------------------------------------------------------------------------------------ 
+For Dynamic Partition
+
+set hive.exec.dynamic.partition.mode=nonstrict;
