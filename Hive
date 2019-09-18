@@ -153,7 +153,9 @@ Truncate table tablename;  Cannot truncate non-managed table.
 drop table tablename; Table structure deleted but data/files remains in same path.
 --------------------------------------------------------------------------------------------
 
-Managed tables with PARTITIONS 
++--------------------------------+
+| Managed tables with PARTITIONS |
++--------------------------------+
 
 create table tbl_a (field1 int, field2 string, field3 string, field4 string) 
 PARTITIONED BY (alphabet char(1)) 
@@ -171,21 +173,60 @@ row format DELIMITED
 fields terminated by '|' stored as textfile;
 
 load data local inpath '/files/unique_1.txt' into table tbl_b PARTITION (year=2015, month=03, day=31);
+
 #it will create 3 sub folder to store data 
 
 ----------------------------------------------
 Step1: Creating Stage table 
+
 create table tbl_partition (id INT, name STRING,dept String,year char(5),month char(2)) 
 row format DELIMITED fields terminated by ',' 
 stored as textfile
 tblproperties ("skip.header.line.count"="1");
 
 Step2:
+
 load data local inpath '/files/dinesh_data.txt' into table tbl_partition;
 
 Step3:
+#Partition and column name should not same.
 create table tbl_partition_1 (id INT,name STRING,dept String,year char(5),month char(2))
-PARTITIONED by (year int,month int) 
+PARTITIONED by (years int,months int) 
 row format delimited 
 fields terminated by ',' 
 stored as textfile ;
+
+---Dynamic partition
+
+--2 level of parttiton year wise and month
+
+set hive.exec.dynamic.partition.mode=nonstrict;
+
+insert into table tbl_partition_1 partition(years,months) 
+select  id,name,dept,year,month,cast(year as int) years,cast(month as int) months from  tbl_partition;
+--Partition files will create like 000000_0
+--Returns Year partition data
+hive> select * from tbl_partition_1 where years=2009;
+OK
+2	animesh	HR	2009 	02	2009	2
+1	sunny	SC	2009 	03	2009	3
+
+--Returns Year and month wise filter partition data
+
+hive> select * from tbl_partition_1 where years=2009 and months=2;
+OK
+2	animesh	HR	2009 	02	2009	2
+
+-------------------------------------------------------------------------------------------------------
+# To get filename 
+
+hive> select  id,name,dept,year,month,INPUT__FILE__NAME from  tbl_partition;
+OK
+1	sunny	SC	2009 	03	hdfs://localhost:8020/user/hive/warehouse/exercises.db/tbl_partition/dinesh_data.txt
+
+-----------------------------------------------------------------------------------------------------------------
+
+
+
+
+
