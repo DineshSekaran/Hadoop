@@ -33,3 +33,6 @@ hdfs dfs -rm /filemname
 
 # Create a directory #
 hdfs dfs -mkdir /test
+
+#Placing file for hive table
+dfs -put inputenviornment/fiels /HDFSfiellocation;
