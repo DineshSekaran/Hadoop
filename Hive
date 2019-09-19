@@ -237,7 +237,22 @@ OK
 
 -----------------------------------------------------------------------------------------------------------------
 
+PArtition cannot query and also cant Drop
 
+Alter table tablename PArtition(partition_name=<value>) ENABLE NO DROP; wont allow to drop partition
+Alter table tablename PArtition(partition_name=<value>) ENABLE OFFLINE; WONT ALLOW TO QUERY
 
+Alter table tablename PArtition(partition_name=<value>) DISABLE NO DROP; 
+Alter table tablename PArtition(partition_name=<value>) DISABLE OFFLINE;
 
+-----------------------------------------------------------------------------------------------
+Managed table also create with pointing specify location like external table
+
+create  table employees (employee_id int, name string) 
+row format DELIMITED 
+fields terminated by '|' 
+stored as textfile
+LOCATION '/employees'   -----lOCATION
+TBL_PROPERTIES(<>);
+----------------------------------------------------------------------------------
 
