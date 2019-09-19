@@ -19,3 +19,14 @@ To display DB in prompt shell
 
 hive> set hive.cli.print.current.db=true;
 hive (exercises)> 
+
+-----------------------------------------------------
+Drop an external table along with data
+
+TBLPROPERTIES ('external.table.purge'='true');
+
+-------------------------------------------------------------------------------------
+
+MSCK REPAIR TABLE tablename
+
+-----------------------------------------------------
