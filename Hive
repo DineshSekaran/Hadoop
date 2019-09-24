@@ -256,3 +256,25 @@ LOCATION '/employees'   -----lOCATION
 TBL_PROPERTIES(<>);
 ----------------------------------------------------------------------------------
 
++---------------------------------+
+| External tables with PARTITIONS |
++---------------------------------+
+
+
+create EXTERNAL table tbl_c (col1 string, col2 string, col3 string, col4 string, col5 string, col6 string, col7 string, col8 string)
+PARTITIONED BY (alphabet char(1))
+row format SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde' with SERDEPROPERTIES ("separatorChar" = "|") 
+stored as textfile LOCATION '/external_partition';
+
+ALTER TABLE tbl_c ADD PARTITION (alphabet='a') LOCATION '/external_partition/a';
+
+ALTER TABLE tbl_c ADD PARTITION (alphabet='b') LOCATION '/external_partition/b';
+
+ALTER TABLE tbl_c ADD PARTITION (alphabet='c') LOCATION '/external_partition/c';
+
+dfs -put /input_file_location/same_type1_a.txt.txt /external_partition/a;
+dfs -put /input_file_location//same_type1_b.txt /external_partition/b;
+dfs -put /input_file_location//same_type1_c.txt /external_partition/c;
+
+
+
