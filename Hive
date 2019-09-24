@@ -259,7 +259,7 @@ TBL_PROPERTIES(<>);
 +---------------------------------+
 | External tables with PARTITIONS |
 +---------------------------------+
-
+***Cannot truncate table only mnaged can be truncate
 
 create EXTERNAL table tbl_c (col1 string, col2 string, col3 string, col4 string, col5 string, col6 string, col7 string, col8 string)
 PARTITIONED BY (alphabet char(1))
@@ -276,5 +276,19 @@ dfs -put /input_file_location/same_type1_a.txt.txt /external_partition/a;
 dfs -put /input_file_location//same_type1_b.txt /external_partition/b;
 dfs -put /input_file_location//same_type1_c.txt /external_partition/c;
 
+--------------------------------------------------
++--------------------+
+| Working with DATES |
++--------------------+
+Select current_date()
+
+Select current_timestamp()
+
+
+------------------------------------------------------------------------------------
+
+Select current_databases()
+
+select current_user()
 
 
