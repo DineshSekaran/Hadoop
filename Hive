@@ -294,3 +294,25 @@ select current_user()
 ============================File Format=========
 
 CREATE TABLE address_seq stored as <SEQUENCEFILE,ORC,Avro,Parquet> AS  select * from table( with text file format).
+
+
+=====================BUCKETS========================
+create table address_text (id INT, code STRING, plot INT, addr_line1 STRING, addr_line2 STRING, 
+suite STRING, city STRING, county STRING, state char(2), zipcode INT, country STRING, stage INT, type STRING)
+row format DELIMITED fields terminated by '|' stored as TEXTFILE;
+
+
+load data local inpath 'path/customer_address.txt' into table address_text;
+Loading data to table exercises.address_text
+
+#Normal to Bucketing table
+
+create table address_buckets (id INT, code STRING, plot INT, addr_line1 STRING, addr_line2 STRING, 
+suite STRING, city STRING, county STRING, state char(2), zipcode INT, country STRING, stage INT, type STRING) 
+CLUSTERED BY (type) INTO 10 BUCKETS;
+
+INSERT OVERWRITE table address_buckets SELECT * from address_text;
+
+dfs -ls /user/hive/warehouse/address_buckets/;
+
+dfs -cat /user/hive/warehouse/address_buckets/000000_0;
