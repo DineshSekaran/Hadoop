@@ -30,3 +30,6 @@ TBLPROPERTIES ('external.table.purge'='true');
 MSCK REPAIR TABLE tablename
 
 -----------------------------------------------------
+
+========================Hive Static Partition===============
+set hive.mapred.mode = strict 
