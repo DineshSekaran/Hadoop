@@ -291,4 +291,6 @@ Select current_databases()
 
 select current_user()
 
+============================File Format=========
 
+CREATE TABLE address_seq stored as <SEQUENCEFILE,ORC,Avro,Parquet> AS  select * from table( with text file format).
