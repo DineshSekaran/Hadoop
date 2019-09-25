@@ -24,7 +24,10 @@ O/P data will dispalyed in terminal
 get_parms_hive_records.hql    ==========>Filename
 
 $ touch get_parms_hive_records.hql
+
 $ vim get_parms_hive_records.hql
+select * from ${hiveconf:tablename} where customer_id=${hiveconf:filter_codn};
+
 $ cat get_parms_hive_records.hql
 select * from ${hiveconf:tablename} where customer_id=${hiveconf:filter_codn};
 
