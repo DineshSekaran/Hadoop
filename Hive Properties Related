@@ -33,3 +33,9 @@ MSCK REPAIR TABLE tablename
 
 ========================Hive Static Partition===============
 set hive.mapred.mode = strict 
+
+
+================To See the location of hive Path=========
+
+hive> set hive.metastore.warehouse.dir;
+hive.metastore.warehouse.dir=/user/hive/warehouse
