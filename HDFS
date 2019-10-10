@@ -36,3 +36,23 @@ hdfs dfs -mkdir /test
 
 #Placing file for hive table
 dfs -put inputenviornment/fiels /HDFSfiellocation;
+
+
+============================Deleting the Sqoop placed file directory============
+
+ hdfs dfs -rm /sqoop/import_plain/part*
+ 
+ Output:
+ 
+19/10/10 08:50:48 INFO fs.TrashPolicyDefault: Namenode trash configuration: Deletion interval = 0 minutes, Emptier interval = 0 minutes.
+Deleted /sqoop/import_plain/part-m-00000
+19/10/10 08:50:50 INFO fs.TrashPolicyDefault: Namenode trash configuration: Deletion interval = 0 minutes, Emptier interval = 0 minutes.
+Deleted /sqoop/import_plain/part-m-00001
+19/10/10 08:50:50 INFO fs.TrashPolicyDefault: Namenode trash configuration: Deletion interval = 0 minutes, Emptier interval = 0 minutes.
+Deleted /sqoop/import_plain/part-m-00002
+19/10/10 08:50:50 INFO fs.TrashPolicyDefault: Namenode trash configuration: Deletion interval = 0 minutes, Emptier interval = 0 minutes.
+Deleted /sqoop/import_plain/part-m-00003
+jpasolutions@ubuntu:/$ hdfs dfs -rm /sqoop/import_plain/_S*
+19/10/10 08:51:07 INFO fs.TrashPolicyDefault: Namenode trash configuration: Deletion interval = 0 minutes, Emptier interval = 0 minutes.
+Deleted /sqoop/import_plain/_SUCCESS
+
