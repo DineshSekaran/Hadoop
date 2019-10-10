@@ -1,0 +1,21 @@
+Below is the example Mysql DB:
+sqoopdb---> Database Name
+Port-->3306
+
+======================List Tables===============
+
+sqoop list-tables \
+	  --connect jdbc:mysql://localhost:3306/sqoopdb \
+	  --username root \
+	  --password root
+    
+====================Evaluate the query================   
+
+sqoop eval \
+	--connect jdbc:mysql://localhost:3306/sqoopdb \
+	--username root \
+	--password root \
+	--query 'select * from patients'
+  
+
+====================== Sqoop Import ===============
