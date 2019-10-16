@@ -1,3 +1,4 @@
+# Hadoop FileSystem
 hdfs-site.xml
 core-site.xml
 yarn-site.xml
@@ -11,7 +12,7 @@ Node Manager
 Resource Manager
 
 
-#View all hdfs files:
+# View all hdfs files:
 hdfs dfs
 
 # List the root HDFS directory #
@@ -29,16 +30,17 @@ hdfs dfs -cat /hiveexercises2 |wc -l;
 # Delete a file #
 hdfs dfs -rm /filemname
 
-#distcp
+# copy
+distcp
 
 # Create a directory #
 hdfs dfs -mkdir /test
 
-#Placing file for hive table
+# Placing file for hive table
 dfs -put inputenviornment/fiels /HDFSfiellocation;
 
 
-============================Deleting the Sqoop placed file directory============
+# Deleting the Sqoop placed file directory
 
  hdfs dfs -rm /sqoop/import_plain/part*
  
