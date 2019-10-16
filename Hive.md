@@ -1,4 +1,4 @@
-########FileFormat:
+#FileFormat:
 
 Text File is a default storage format. You can use the text format to interchange the data with other client application. 
 Data is stored in lines, with each line being a record. Each lines are terminated by a newline character (\n).
@@ -12,7 +12,7 @@ AVRO File open source project that provides data serialization and data exchange
 ORC File stands for Optimized Row Columnar file format. 
 
 Parquet File is a column-oriented binary file format. The parquet is highly efficient for the types of large-scale queries. 
--------------------------------------------------------------------------------------------
+
 
 #Database
 ```
@@ -24,14 +24,16 @@ use exercises;
 
 show tables;
 ```
----------------------------------------------------------------------
+
 # Working with MANAGED tables 
+```
 create table orders (order_id int, customer_id int, order_date date, amount float) 
 row format DELIMITED 
 fields terminated by ',' 
 stored as textfile;
--------------------------------------------------------------------------
-show create table orders:
+
+show create table orders;
+
 CREATE TABLE `orders`(
   `order_id` int, 
   `customer_id` int, 
@@ -55,25 +57,29 @@ TBLPROPERTIES (
   'rawDataSize'='0', 
   'totalSize'='0', 
   'transient_lastDdlTime'='1568469784')
-
--------------------------------------------------------------------------
+```
+#Decribe Data type
+```
 desc orders:
 --ony column and data type
-# col_name            	data_type  
+ col_name            	data_type  
 order_id            	int                 	                    
 customer_id         	int                 	                    
 order_date          	date                	                    
 amount              	float  
--------------------------------------------------------------------------
-describe Formatted orders;
-# col_name            	data_type           	comment             
+```
+
+#describe Formatted orders;
+```
+col_name            	data_type           	comment             
 	 	 
 order_id            	int                 	                    
 customer_id         	int                 	                    
 order_date          	date                	                    
 amount              	float               	                    
-	 	 
-# Detailed Table Information	 	 
+```	 	 
+# Detailed Table Information	 
+```
 Database:           	exercises           	 
 Owner:              	jpasolutions        	 
 CreateTime:         	Sat Sep 14 07:03:04 PDT 2019	 
@@ -88,7 +94,7 @@ Table Parameters:
 	rawDataSize         	0                   
 	totalSize           	0                   
 	transient_lastDdlTime	1568469784          
-	 	 
+```	 	 
 # Storage Information	 	 
 SerDe Library:      	org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe	 
 InputFormat:        	org.apache.hadoop.mapred.TextInputFormat	 
