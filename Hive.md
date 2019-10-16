@@ -202,3 +202,26 @@ row format delimited
 fields terminated by ',' 
 stored as textfile ;
 ```
+
+# Dynamic partition
+*2 level of parttiton year wise and month*
+```
+set hive.exec.dynamic.partition.mode=nonstrict;
+
+insert into table tbl_partition_1 partition(years,months) 
+select  id,name,dept,year,month,cast(year as int) years,cast(month as int) months from  tbl_partition;
+```
+
+# SHOW PARTITIONS
+```
+hive> SHOW PARTITIONS tbl_partition_1;
+OK
+years=2009/months=2
+years=2009/months=3
+years=2010/months=4
+years=2011/months=12
+years=2019/months=12
+
+**Partition files will create like 000000_0**
+**Returns Year partition data**
+```
