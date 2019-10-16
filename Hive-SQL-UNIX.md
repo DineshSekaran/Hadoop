@@ -1,4 +1,4 @@
-Running SQL as SCRIPTS which will used as shell script/oozie/scheduling
+***Running SQL as SCRIPTS which will used as shell script/oozie/scheduling****
 # Create empty file
 ```
 touch get_hive_reocrds.hql<filename>
