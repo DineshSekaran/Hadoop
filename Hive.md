@@ -172,3 +172,33 @@ sour1.txt file will be tagged to alphabet='a' irrespective any data.
 
 load data local inpath 'files/sour2.txt' into table tbl_a PARTITION (alphabet='b');
 ```
+# Managed tables with multiple level PARTITIONS 
+```
+create table tbl_b (closing_value BIGINT, variation DOUBLE, username STRING)
+PARTITIONED BY (year INT, month INT, DAY INT) 
+row format DELIMITED 
+fields terminated by '|' stored as textfile;
+
+load data local inpath '/files/unique_1.txt' into table tbl_b PARTITION (year=2015, month=03, day=31);
+
+it will create 3 sub folder to store data 
+
+*Step1: Creating Stage table *
+
+create table tbl_partition (id INT, name STRING,dept String,year char(5),month char(2)) 
+row format DELIMITED fields terminated by ',' 
+stored as textfile
+tblproperties ("skip.header.line.count"="1");
+
+*Step2:*
+
+load data local inpath '/files/dinesh_data.txt' into table tbl_partition;
+
+*Step3:*
+Partition and column name should not same.
+create table tbl_partition_1 (id INT,name STRING,dept String,year char(5),month char(2))
+PARTITIONED by (years int,months int) 
+row format delimited 
+fields terminated by ',' 
+stored as textfile ;
+```
