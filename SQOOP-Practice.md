@@ -1,4 +1,4 @@
-****Below is the example Mysql DB:****\n
+****Below is the example Mysql DB:\t****
 ****sqoopdb---> Database Name****
 ****Port-->3306****
 ****Ref URL http://sqoop.apache.org/docs/1.4.2/SqoopUserGuide.html#_purpose_11****
