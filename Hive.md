@@ -15,6 +15,7 @@ Parquet File is a column-oriented binary file format. The parquet is highly effi
 -------------------------------------------------------------------------------------------
 
 #Database
+```
 show databases;
 
 create database exercises;
@@ -22,6 +23,7 @@ create database exercises;
 use exercises;
 
 show tables;
+```
 ---------------------------------------------------------------------
 # Working with MANAGED tables 
 create table orders (order_id int, customer_id int, order_date date, amount float) 
