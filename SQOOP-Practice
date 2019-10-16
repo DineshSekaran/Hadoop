@@ -1,24 +1,25 @@
-Below is the example Mysql DB:
-sqoopdb---> Database Name
-Port-->3306
-Ref URL http://sqoop.apache.org/docs/1.4.2/SqoopUserGuide.html#_purpose_11
-======================List Tables===============
-
+****Below is the example Mysql DB:****
+****sqoopdb---> Database Name****
+****Port-->3306****
+****Ref URL http://sqoop.apache.org/docs/1.4.2/SqoopUserGuide.html#_purpose_11****
+# List Tables
+```
 sqoop list-tables \
 	  --connect jdbc:mysql://localhost:3306/sqoopdb \
 	  --username root \
 	  --password root
-    
-====================Evaluate the query================   
-
+```    
+# Evaluate the query 
+```
 sqoop eval \
 	--connect jdbc:mysql://localhost:3306/sqoopdb \
 	--username root \
 	--password root \
 	--query 'select * from patients'
-  
+ ``` 
 
-====================== Sqoop Import complete table===============
+# Sqoop Import complete table
+```
 sqoop import \
 	--connect jdbc:mysql://localhost:3306/sqoopdb \
 	--username root \
@@ -27,7 +28,7 @@ sqoop import \
 	--num-mappers 3 \
 	--delete-target-dir \         ----> Optional
 	--target-dir '/sqoop/import_plain/'
-	
+```
 TO Check: hdfs dfs -ls /sqoop/import_plain/
 Note: Based on Mappers , o/p will get genearted and 1 Success FIle if 3 Mappers then 3 o/p
 
@@ -110,9 +111,8 @@ Note: Based on Mappers , o/p will get genearted and 1 Success FIle if 3 Mappers 
 	File Output Format Counters 
 		Bytes Written=595
 		
-=====================sqoop import Where =============================
-
-
+# sqoop import Where 
+```
 sqoop import \
 	--connect jdbc:mysql://localhost:3306/sqoopdb \
 	--username root \
@@ -122,12 +122,12 @@ sqoop import \
 	--num-mappers 1 \
 	--where "drug='metacin'" \
 	--target-dir '/sqoop/import_where'		
-
+```
 hdfs dfs -ls /sqoop/import_where/
 hdfs dfs -cat /sqoop/import_where/part-m-00000
 
-================= import as Sequence and selected columns======================
-
+# import as Sequence and selected columns
+```
 sqoop import \
 	--connect jdbc:mysql://localhost:3306/sqoopdb \
 	--username root \
@@ -138,7 +138,7 @@ sqoop import \
 	--columns "drug,age" \          -----------> column selection
 	--target-dir '/sqoop/import_columns' \
 	--as-sequencefile;         -----------> File Formate
-	
+```	
 ########Passing PAssword as Runtime#############
 
 sqoop import \
