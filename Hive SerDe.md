@@ -1,5 +1,5 @@
-Serialization: Process of converting object into stream of bytes and stored in DB/Memory/FIles
-DeSerialization: Opposite to serialization. Takes object from DB/Files and 
+**Serialization: Process of converting object into stream of bytes and stored in DB/Memory/FIles**
+**DeSerialization: Opposite to serialization. Takes object from DB/Files and **
 
 # Hive DDL
 ```
