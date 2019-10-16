@@ -116,8 +116,9 @@ dfs -ls /hiveexercises;
 ```
 
 # Load Data to tables
+```
 load data inpath '/hiveexercises/orders.txt' into table orders;
-
+```
 
 # To handle the mainly for csv file format 
 ```
@@ -134,7 +135,7 @@ WITH SERDEPROPERTIES (
    'escapeChar' = '\\'
    )
 STORED AS TEXTFILE
-LOCATION 's3://location/of/csv/'; can be anything based on our project
+LOCATION 's3://location/of/csv/';--can be anything based on our project
 ```
 
 # CTAS create table as same/copy
@@ -142,16 +143,17 @@ LOCATION 's3://location/of/csv/'; can be anything based on our project
 create table customers_copy as select * from customers;
 ```
 
-+-------------------------+
-|# Dropping MANAGED tables |
-+-------------------------+
+
+# Dropping MANAGED tables 
+
 ```
 Truncate table tablename;  data purge alone
 
 drop table tablename; Both table structure and data path everything purged.
-```
+
 
 # EXTERNAL TABLE
+
 ```
 create EXTERNAL table employees (employee_id int, name string) 
 row format DELIMITED 
@@ -159,16 +161,15 @@ fields terminated by '|'
 stored as textfile
 LOCATION '/employees';
 ```
-+-------------------------+
-# | Dropping MANAGED tables |
-+-------------------------+
+
+# Dropping MANAGED tables 
+
 ```
 Truncate table tablename;  Cannot truncate non-managed table.
-
 drop table tablename; Table structure deleted but data/files remains in same path.
 ```
 # Managed tables with PARTITIONS 
-+--------------------------------+
+
 ```
 create table tbl_a (field1 int, field2 string, field3 string, field4 string) 
 PARTITIONED BY (alphabet char(1)) 
@@ -179,7 +180,7 @@ load data local inpath 'files/sour1.txt' into table tbl_a PARTITION (alphabet='a
 #sour1.txt file will be tagged to alphabet='a' irrespective any data.
 
 load data local inpath 'files/sour2.txt' into table tbl_a PARTITION (alphabet='b');
-
+```
 # Managed tables with multiple level PARTITIONS 
 ```
 create table tbl_b (closing_value BIGINT, variation DOUBLE, username STRING)
@@ -193,7 +194,7 @@ load data local inpath '/files/unique_1.txt' into table tbl_b PARTITION (year=20
 ```
 ----------------------------------------------
 Step1: Creating Stage table 
-
+```
 create table tbl_partition (id INT, name STRING,dept String,year char(5),month char(2)) 
 row format DELIMITED fields terminated by ',' 
 stored as textfile
@@ -210,7 +211,7 @@ PARTITIONED by (years int,months int)
 row format delimited 
 fields terminated by ',' 
 stored as textfile ;
-
+```
 # Dynamic partition
 ****2 level of parttiton year wise and month
 ```
