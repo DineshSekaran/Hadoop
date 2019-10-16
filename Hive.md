@@ -156,9 +156,9 @@ LOCATION '/employees';
 ```
 # Dropping MANAGED tables 
 ```Truncate table tablename; 
-Cannot truncate non-managed table.
+*Cannot truncate non-managed table.*
 drop table tablename;  
-Table structure deleted but data/files remains in same path.
+*Table structure deleted but data/files remains in same path.*
 ```
 # Managed tables with Static PARTITIONS 
 ```
@@ -168,7 +168,8 @@ row format SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
 stored as textfile;
 
 load data local inpath 'files/sour1.txt' into table tbl_a PARTITION (alphabet='a'); 
-sour1.txt file will be tagged to alphabet='a' irrespective any data.
+
+*sour1.txt file will be tagged to alphabet='a' irrespective any data.*
 
 load data local inpath 'files/sour2.txt' into table tbl_a PARTITION (alphabet='b');
 ```
@@ -181,7 +182,7 @@ fields terminated by '|' stored as textfile;
 
 load data local inpath '/files/unique_1.txt' into table tbl_b PARTITION (year=2015, month=03, day=31);
 
-it will create 3 sub folder to store data 
+*it will create 3 sub folder to store data *
 
 *Step1: Creating Stage table *
 
@@ -195,7 +196,9 @@ tblproperties ("skip.header.line.count"="1");
 load data local inpath '/files/dinesh_data.txt' into table tbl_partition;
 
 *Step3:*
+
 Partition and column name should not same.
+
 create table tbl_partition_1 (id INT,name STRING,dept String,year char(5),month char(2))
 PARTITIONED by (years int,months int) 
 row format delimited 
@@ -224,4 +227,23 @@ years=2019/months=12
 
 **Partition files will create like 000000_0**
 **Returns Year partition data**
+```
+#Select PArtitions
+hive> select * from tbl_partition_1 where years=2009;
+OK
+2	animesh	HR	2009 	02	2009	2
+1	sunny	SC	2009 	03	2009	3
+
+Returns Year and month wise filter partition data
+
+hive> select * from tbl_partition_1 where years=2009 and months=2;
+OK
+2	animesh	HR	2009 	02	2009	2
+
+
+# To get filename 
+```
+hive> select  id,name,dept,year,month,INPUT__FILE__NAME from  tbl_partition;
+OK
+1	sunny	SC	2009 	03	hdfs://localhost:8020/user/hive/warehouse/exercises.db/tbl_partition/dinesh_data.txt
 ```
