@@ -160,3 +160,15 @@ Cannot truncate non-managed table.
 drop table tablename;  
 Table structure deleted but data/files remains in same path.
 ```
+# Managed tables with Static PARTITIONS 
+```
+create table tbl_a (field1 int, field2 string, field3 string, field4 string) 
+PARTITIONED BY (alphabet char(1)) 
+row format SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
+stored as textfile;
+
+load data local inpath 'files/sour1.txt' into table tbl_a PARTITION (alphabet='a'); 
+sour1.txt file will be tagged to alphabet='a' irrespective any data.
+
+load data local inpath 'files/sour2.txt' into table tbl_a PARTITION (alphabet='b');
+```
