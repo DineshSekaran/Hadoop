@@ -212,16 +212,15 @@ fields terminated by ','
 stored as textfile ;
 
 # Dynamic partition
-
-#2 level of parttiton year wise and month
+****2 level of parttiton year wise and month
 ```
 set hive.exec.dynamic.partition.mode=nonstrict;
 
 insert into table tbl_partition_1 partition(years,months) 
 select  id,name,dept,year,month,cast(year as int) years,cast(month as int) months from  tbl_partition;
-```
-# SHOW PARTITIONS tbl_partition_1:
-```
+
+***** SHOW PARTITIONS tbl_partition_1:
+
 hive> SHOW PARTITIONS tbl_partition_1;
 OK
 years=2009/months=2
@@ -238,7 +237,7 @@ OK
 2	animesh	HR	2009 	02	2009	2
 1	sunny	SC	2009 	03	2009	3
 
---Returns Year and month wise filter partition data
+*****Returns Year and month wise filter partition data
 
 hive> select * from tbl_partition_1 where years=2009 and months=2;
 OK
@@ -274,11 +273,11 @@ TBL_PROPERTIES(<>);
 ```
 
 
-+---------------------------------+
-| External tables with PARTITIONS |
-+---------------------------------+
-***Cannot truncate table only mnaged can be truncate
 
+# External tables with PARTITIONS 
+
+***Cannot truncate table only managed can be truncate
+```
 create EXTERNAL table tbl_c (col1 string, col2 string, col3 string, col4 string, col5 string, col6 string, col7 string, col8 string)
 PARTITIONED BY (alphabet char(1))
 row format SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde' with SERDEPROPERTIES ("separatorChar" = "|") 
@@ -293,28 +292,31 @@ ALTER TABLE tbl_c ADD PARTITION (alphabet='c') LOCATION '/external_partition/c';
 dfs -put /input_file_location/same_type1_a.txt.txt /external_partition/a;
 dfs -put /input_file_location//same_type1_b.txt /external_partition/b;
 dfs -put /input_file_location//same_type1_c.txt /external_partition/c;
+```
 
---------------------------------------------------
-+--------------------+
-| Working with DATES |
-+--------------------+
+
+# Working with DATES 
+
 Select current_date()
 
 Select current_timestamp()
 
 
-------------------------------------------------------------------------------------
+# Show DB,USER
 
+```
 Select current_databases()
 
 select current_user()
+```
+## File Format
 
-## File Format=========
 ```
 CREATE TABLE address_seq stored as <SEQUENCEFILE,ORC,Avro,Parquet> AS  select * from table( with text file format).
 ```
 
-## BUCKETS========================
+# BUCKETS
+
 ```
 create table address_text (id INT, code STRING, plot INT, addr_line1 STRING, addr_line2 STRING, 
 suite STRING, city STRING, county STRING, state char(2), zipcode INT, country STRING, stage INT, type STRING)
@@ -326,6 +328,7 @@ Loading data to table exercises.address_text
 ```
 
 # Normal to Bucketing table
+
 ```
 create table address_buckets (id INT, code STRING, plot INT, addr_line1 STRING, addr_line2 STRING, 
 suite STRING, city STRING, county STRING, state char(2), zipcode INT, country STRING, stage INT, type STRING) 
