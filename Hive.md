@@ -247,3 +247,84 @@ hive> select  id,name,dept,year,month,INPUT__FILE__NAME from  tbl_partition;
 OK
 1	sunny	SC	2009 	03	hdfs://localhost:8020/user/hive/warehouse/exercises.db/tbl_partition/dinesh_data.txt
 ```
+
+
+#  PArtition cannot query and also cant Drop
+```
+Alter table tablename PArtition(partition_name=<value>) ENABLE NO DROP; wont allow to drop partition
+Alter table tablename PArtition(partition_name=<value>) ENABLE OFFLINE; WONT ALLOW TO QUERY
+
+Alter table tablename PArtition(partition_name=<value>) DISABLE NO DROP; 
+Alter table tablename PArtition(partition_name=<value>) DISABLE OFFLINE;
+```
+# Managed table also create with pointing specify location like external table
+```
+create  table employees (employee_id int, name string) 
+row format DELIMITED 
+fields terminated by '|' 
+stored as textfile
+LOCATION '/employees'   
+TBL_PROPERTIES(<>);
+```
+
+
+
+# External tables with PARTITIONS 
+
+*Cannot truncate table only managed can be truncate*
+```
+create EXTERNAL table tbl_c (col1 string, col2 string, col3 string, col4 string, col5 string, col6 string, col7 string, col8 string)
+PARTITIONED BY (alphabet char(1))
+row format SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde' with SERDEPROPERTIES ("separatorChar" = "|") 
+stored as textfile LOCATION '/external_partition';
+
+ALTER TABLE tbl_c ADD PARTITION (alphabet='a') LOCATION '/external_partition/a';
+
+ALTER TABLE tbl_c ADD PARTITION (alphabet='b') LOCATION '/external_partition/b';
+
+ALTER TABLE tbl_c ADD PARTITION (alphabet='c') LOCATION '/external_partition/c';
+
+dfs -put /input_file_location/same_type1_a.txt.txt /external_partition/a;
+dfs -put /input_file_location//same_type1_b.txt /external_partition/b;
+dfs -put /input_file_location//same_type1_c.txt /external_partition/c;
+```
+
+# Working with DATES 
+```
+Select current_date()
+
+Select current_timestamp()
+```
+
+# Show DB USER
+```
+Select current_databases()
+select current_user()
+```
+# File Format
+```
+CREATE TABLE address_seq stored as <SEQUENCEFILE,ORC,Avro,Parquet> AS  select * from table( with text file format).
+```
+
+# BUCKETS
+```
+create table address_text (id INT, code STRING, plot INT, addr_line1 STRING, addr_line2 STRING, 
+suite STRING, city STRING, county STRING, state char(2), zipcode INT, country STRING, stage INT, type STRING)
+row format DELIMITED fields terminated by '|' stored as TEXTFILE;
+
+load data local inpath 'path/customer_address.txt' into table address_text;
+Loading data to table exercises.address_text
+```
+
+# Normal to Bucketing table
+```
+create table address_buckets (id INT, code STRING, plot INT, addr_line1 STRING, addr_line2 STRING, 
+suite STRING, city STRING, county STRING, state char(2), zipcode INT, country STRING, stage INT, type STRING) 
+CLUSTERED BY (type) INTO 10 BUCKETS;
+
+INSERT OVERWRITE table address_buckets SELECT * from address_text;
+
+dfs -ls /user/hive/warehouse/address_buckets/;
+
+dfs -cat /user/hive/warehouse/address_buckets/000000_0;
+```
