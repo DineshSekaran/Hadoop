@@ -145,3 +145,18 @@ data purge alone
 drop table tablename; 
 Both table structure and data path everything purged.
 ```
+
+# EXTERNAL TABLE
+```
+create EXTERNAL table employees (employee_id int, name string) 
+row format DELIMITED 
+fields terminated by '|' 
+stored as textfile
+LOCATION '/employees';
+```
+# Dropping MANAGED tables 
+```Truncate table tablename; 
+Cannot truncate non-managed table.
+drop table tablename;  
+Table structure deleted but data/files remains in same path.
+```
