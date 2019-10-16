@@ -139,8 +139,8 @@ sqoop import \
 	--target-dir '/sqoop/import_columns' \
 	--as-sequencefile;         -----------> File Formate
 ```	
-########Passing PAssword as Runtime#############
-
+# Passing PAssword as Runtime
+```
 sqoop import \
 	--connect jdbc:mysql://localhost:3306/sqoopdb \
 	--username root \
@@ -151,5 +151,5 @@ sqoop import \
 	--columns "drug,age" \
 	--target-dir '/sqoop/import_columns' \
 	--as-sequencefile
-	
-====================
+```	
+
