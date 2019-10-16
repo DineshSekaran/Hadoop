@@ -14,7 +14,7 @@ ORC File stands for Optimized Row Columnar file format. 
 Parquet File is a column-oriented binary file format. The parquet is highly efficient for the types of large-scale queries. 
 
 
-#Database
+# Database
 ```
 show databases;
 
@@ -58,7 +58,7 @@ TBLPROPERTIES (
   'totalSize'='0', 
   'transient_lastDdlTime'='1568469784')
 ```
-#Decribe Data type
+# Decribe Data type
 ```
 desc orders:
 --ony column and data type
@@ -69,7 +69,7 @@ order_date          	date
 amount              	float  
 ```
 
-#describe Formatted orders;
+# describe Formatted orders;
 ```
 col_name            	data_type           	comment             
 	 	 
@@ -95,7 +95,8 @@ Table Parameters:
 	totalSize           	0                   
 	transient_lastDdlTime	1568469784          
 ```	 	 
-# Storage Information	 	 
+# Storage Information	
+```
 SerDe Library:      	org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe	 
 InputFormat:        	org.apache.hadoop.mapred.TextInputFormat	 
 OutputFormat:       	org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat	 
@@ -106,17 +107,20 @@ Sort Columns:       	[]
 Storage Desc Params:	 	 
 	field.delim         	,                   
 	serialization.format	,    
+```
 
------------------------------------------------------
 check file in hdfs location
+```
 dfs -put /home/... /hiveexercises;
 dfs -ls /hiveexercises;
----------------------------------------------------------
-#Load Data to tables
+```
+
+# Load Data to tables
 load data inpath '/hiveexercises/orders.txt' into table orders;
 
----------------------------------------------------------------------
+
 # To handle the mainly for csv file format 
+```
 CREATE EXTERNAL TABLE myopencsvtable (
    col1 string,
    col2 string,
@@ -131,41 +135,41 @@ WITH SERDEPROPERTIES (
    )
 STORED AS TEXTFILE
 LOCATION 's3://location/of/csv/'; can be anything based on our project
+```
 
------------------------------------------------------------------------
-#CTAS create table as same/copy
+# CTAS create table as same/copy
+```
 create table customers_copy as select * from customers;
-----------------------------------------------------------------
+```
 
 +-------------------------+
-| Dropping MANAGED tables |
+|# Dropping MANAGED tables |
 +-------------------------+
-
+```
 Truncate table tablename;  data purge alone
 
 drop table tablename; Both table structure and data path everything purged.
----------------------------------------------------------------------
-EXTERNAL TABLE
+```
 
+# EXTERNAL TABLE
+```
 create EXTERNAL table employees (employee_id int, name string) 
 row format DELIMITED 
 fields terminated by '|' 
 stored as textfile
 LOCATION '/employees';
-
+```
 +-------------------------+
-| Dropping MANAGED tables |
+# | Dropping MANAGED tables |
 +-------------------------+
-
+```
 Truncate table tablename;  Cannot truncate non-managed table.
 
 drop table tablename; Table structure deleted but data/files remains in same path.
---------------------------------------------------------------------------------------------
-
+```
+# Managed tables with PARTITIONS 
 +--------------------------------+
-| Managed tables with PARTITIONS |
-+--------------------------------+
-
+```
 create table tbl_a (field1 int, field2 string, field3 string, field4 string) 
 PARTITIONED BY (alphabet char(1)) 
 row format SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
@@ -176,6 +180,8 @@ load data local inpath 'files/sour1.txt' into table tbl_a PARTITION (alphabet='a
 
 load data local inpath 'files/sour2.txt' into table tbl_a PARTITION (alphabet='b');
 
+# Managed tables with multiple level PARTITIONS 
+```
 create table tbl_b (closing_value BIGINT, variation DOUBLE, username STRING)
 PARTITIONED BY (year INT, month INT, DAY INT) 
 row format DELIMITED 
@@ -184,7 +190,7 @@ fields terminated by '|' stored as textfile;
 load data local inpath '/files/unique_1.txt' into table tbl_b PARTITION (year=2015, month=03, day=31);
 
 #it will create 3 sub folder to store data 
-
+```
 ----------------------------------------------
 Step1: Creating Stage table 
 
@@ -205,16 +211,17 @@ row format delimited
 fields terminated by ',' 
 stored as textfile ;
 
----Dynamic partition
+# Dynamic partition
 
---2 level of parttiton year wise and month
-
+#2 level of parttiton year wise and month
+```
 set hive.exec.dynamic.partition.mode=nonstrict;
 
 insert into table tbl_partition_1 partition(years,months) 
 select  id,name,dept,year,month,cast(year as int) years,cast(month as int) months from  tbl_partition;
-
-SHOW PARTITIONS tbl_partition_1:
+```
+# SHOW PARTITIONS tbl_partition_1:
+```
 hive> SHOW PARTITIONS tbl_partition_1;
 OK
 years=2009/months=2
@@ -223,8 +230,8 @@ years=2010/months=4
 years=2011/months=12
 years=2019/months=12
 
---Partition files will create like 000000_0
---Returns Year partition data
+#Partition files will create like 000000_0
+#Returns Year partition data
 
 hive> select * from tbl_partition_1 where years=2009;
 OK
@@ -236,34 +243,36 @@ OK
 hive> select * from tbl_partition_1 where years=2009 and months=2;
 OK
 2	animesh	HR	2009 	02	2009	2
+```
 
--------------------------------------------------------------------------------------------------------
 # To get filename 
 
+```
 hive> select  id,name,dept,year,month,INPUT__FILE__NAME from  tbl_partition;
 OK
 1	sunny	SC	2009 	03	hdfs://localhost:8020/user/hive/warehouse/exercises.db/tbl_partition/dinesh_data.txt
 
------------------------------------------------------------------------------------------------------------------
+```
 
-PArtition cannot query and also cant Drop
-
+##  PArtition cannot query and also cant Drop
+```
 Alter table tablename PArtition(partition_name=<value>) ENABLE NO DROP; wont allow to drop partition
 Alter table tablename PArtition(partition_name=<value>) ENABLE OFFLINE; WONT ALLOW TO QUERY
 
 Alter table tablename PArtition(partition_name=<value>) DISABLE NO DROP; 
 Alter table tablename PArtition(partition_name=<value>) DISABLE OFFLINE;
+```
 
------------------------------------------------------------------------------------------------
-Managed table also create with pointing specify location like external table
-
+# Managed table also create with pointing specify location like external table
+```
 create  table employees (employee_id int, name string) 
 row format DELIMITED 
 fields terminated by '|' 
 stored as textfile
 LOCATION '/employees'   -----lOCATION
 TBL_PROPERTIES(<>);
-----------------------------------------------------------------------------------
+```
+
 
 +---------------------------------+
 | External tables with PARTITIONS |
@@ -300,12 +309,13 @@ Select current_databases()
 
 select current_user()
 
-============================File Format=========
-
+## File Format=========
+```
 CREATE TABLE address_seq stored as <SEQUENCEFILE,ORC,Avro,Parquet> AS  select * from table( with text file format).
+```
 
-
-=====================BUCKETS========================
+## BUCKETS========================
+```
 create table address_text (id INT, code STRING, plot INT, addr_line1 STRING, addr_line2 STRING, 
 suite STRING, city STRING, county STRING, state char(2), zipcode INT, country STRING, stage INT, type STRING)
 row format DELIMITED fields terminated by '|' stored as TEXTFILE;
@@ -313,9 +323,10 @@ row format DELIMITED fields terminated by '|' stored as TEXTFILE;
 
 load data local inpath 'path/customer_address.txt' into table address_text;
 Loading data to table exercises.address_text
+```
 
-#Normal to Bucketing table
-
+# Normal to Bucketing table
+```
 create table address_buckets (id INT, code STRING, plot INT, addr_line1 STRING, addr_line2 STRING, 
 suite STRING, city STRING, county STRING, state char(2), zipcode INT, country STRING, stage INT, type STRING) 
 CLUSTERED BY (type) INTO 10 BUCKETS;
@@ -325,3 +336,4 @@ INSERT OVERWRITE table address_buckets SELECT * from address_text;
 dfs -ls /user/hive/warehouse/address_buckets/;
 
 dfs -cat /user/hive/warehouse/address_buckets/000000_0;
+```
