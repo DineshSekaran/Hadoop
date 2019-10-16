@@ -141,9 +141,9 @@ create table customers_copy as select * from customers;
 # Dropping MANAGED tables 
 ```
 Truncate table tablename; 
-data purge alone
+*data purge alone*
 drop table tablename; 
-Both table structure and data path everything purged.
+*Both table structure and data path everything purged*
 ```
 
 # EXTERNAL TABLE
