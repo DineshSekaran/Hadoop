@@ -1,4 +1,4 @@
-#FileFormat:
+# FileFormat:
 
 Text File is a default storage format. You can use the text format to interchange the data with other client application. 
 Data is stored in lines, with each line being a record. Each lines are terminated by a newline character (\n).
