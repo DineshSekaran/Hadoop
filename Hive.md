@@ -13,7 +13,7 @@ ORC File stands for Optimized Row Columnar file format. 
 Parquet File is a column-oriented binary file format. The parquet is highly efficient for the types of large-scale queries. 
 
 # Database
-
+```
 show databases;
 
 create database exercises;
@@ -21,10 +21,10 @@ create database exercises;
 use exercises;
 
 show tables;
-
+```
 
 # Working with MANAGED tables 
-
+```
 create table orders (order_id int, customer_id int, order_date date, amount float) 
 row format DELIMITED 
 fields terminated by ',' 
@@ -55,9 +55,9 @@ TBLPROPERTIES (
   'rawDataSize'='0', 
   'totalSize'='0', 
   'transient_lastDdlTime'='1568469784')
-
+```
 # Decribe Data type
-
+```
 desc orders:
 --ony column and data type
  col_name            	data_type  
@@ -66,18 +66,19 @@ customer_id         	int
 order_date          	date                	                    
 amount              	float  
 
-
-# describe Formatted orders;
-
+```
+# describe Formatted orders
+```
 col_name            	data_type           	comment             
 	 	 
 order_id            	int                 	                    
 customer_id         	int                 	                    
 order_date          	date                	                    
 amount              	float               	                    
-	 	 
-# Detailed Table Information	 
+```	
+# detailed Table Information	
 
+```
 Database:           	exercises           	 
 Owner:              	jpasolutions        	 
 CreateTime:         	Sat Sep 14 07:03:04 PDT 2019	 
@@ -92,9 +93,9 @@ Table Parameters:
 	rawDataSize         	0                   
 	totalSize           	0                   
 	transient_lastDdlTime	1568469784          
-	 	 
+```	 	 
 # Storage Information	
-
+```
 SerDe Library:      	org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe	 
 InputFormat:        	org.apache.hadoop.mapred.TextInputFormat	 
 OutputFormat:       	org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat	 
@@ -104,20 +105,20 @@ Bucket Columns:     	[]
 Sort Columns:       	[]                  	 
 Storage Desc Params:	 	 
 	field.delim         	,                   
-	serialization.format	,    
+	serialization.format	  
 
-
+```
 # check file in hdfs location
-
+```
 dfs -put /home/... /hiveexercises;
 dfs -ls /hiveexercises;
-
+```
 # Load Data to tables
-
+```
 load data inpath '/hiveexercises/orders.txt' into table orders;
-
+```
 # To handle the mainly for csv file format 
-
+```
 CREATE EXTERNAL TABLE myopencsvtable (
    col1 string,
    col2 string,
@@ -132,14 +133,15 @@ WITH SERDEPROPERTIES (
    )
 STORED AS TEXTFILE
 LOCATION 's3://location/of/csv/';--can be anything based on our project
-
+```
 # CTAS create table as same/copy
-
+```
 create table customers_copy as select * from customers;
-
+```
 # Dropping MANAGED tables 
+```
 Truncate table tablename; 
 data purge alone
 drop table tablename; 
 Both table structure and data path everything purged.
-
+```
