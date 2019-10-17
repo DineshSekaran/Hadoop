@@ -188,9 +188,9 @@ sqoop import \
 	--num-mappers 2
 	```
 	
-	# Import to Hive 
-```
-sqoop import \
+# Import to Hive 
+
+```sqoop import \
 	--connect jdbc:mysql://localhost:3306/sqoopdb \
 	--username root \
 	--password root \
@@ -200,5 +200,5 @@ sqoop import \
 	--hive-table sqooptest.din_test \
 	--create-hive-table \
 	--hive-import \
-         -m 1 \
+         -m 1 
 	 ```
