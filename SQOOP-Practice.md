@@ -172,8 +172,7 @@ sqoop import \
 	--optionally-enclosed-by '\"'
 	```
 # Filter codn
-```
-sqoop import \
+```sqoop import \
 	--connect jdbc:mysql://localhost:3306/sqoopdb \
 	--username root \
 	--password root \
@@ -183,6 +182,7 @@ sqoop import \
 	--target-dir '/sqoop/import_query' \
 	--num-mappers 2
 	```
+	#Another Method
 	we can use below appraoch
 	--query 'select * from patients where gender="m" and $CONDITIONS' 
 	#Once we go for  Filter codn above query **Must should use Split by / num mappers**
