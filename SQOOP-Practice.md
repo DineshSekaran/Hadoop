@@ -159,7 +159,8 @@ sqoop import \
 
 # Fileds/Lines Termianted
 
-```sqoop import \
+```
+sqoop import \
 	--connect jdbc:mysql://localhost:3306/sqoopdb \
 	--username root \
 	--password root \
@@ -174,7 +175,8 @@ sqoop import \
 	```
 	# Filter codn
 	
-	```sqoop import \
+	```
+	sqoop import \
 	--connect jdbc:mysql://localhost:3306/sqoopdb \
 	--username root \
 	--password root \
@@ -186,7 +188,8 @@ sqoop import \
 	```
 	
 	# Import to Hive 
-```sqoop import \
+```
+sqoop import \
 	--connect jdbc:mysql://localhost:3306/sqoopdb \
 	--username root \
 	--password root \
