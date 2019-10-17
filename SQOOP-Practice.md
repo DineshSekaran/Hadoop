@@ -157,7 +157,7 @@ sqoop import \
 	**--compress  to we can use file**
 ```
 # Fileds/Lines Termianted
-**If directory exists delete and add new data**
+If directory exists delete and add new data
 ```
 sqoop import \
 	--connect jdbc:mysql://localhost:3306/sqoopdb \
@@ -185,7 +185,7 @@ sqoop import \
 	#Another Method
 	we can use below appraoch
 	--query 'select * from patients where gender="m" and $CONDITIONS' 
-	#Once we go for  Filter codn above query **Must should use Split by / num mappers**
+	#Once we go for  Filter codn above query Must should use Split by / num mappers
 	When importing query results in parallel,Use Split By
 	
 	
