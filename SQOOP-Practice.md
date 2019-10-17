@@ -153,6 +153,22 @@ sqoop import \
 	--num-mappers 1 \
 	--columns "drug,age" \
 	--target-dir '/sqoop/import_columns' \
-	--as-sequencefile
-```	
+	--as-sequencefile  
+	**--compress  to we can use file**
+```
+# Fileds/Lines Termianted
+**If directory exists delete and add new data**
+```
+sqoop import \
+	--connect jdbc:mysql://localhost:3306/sqoopdb \
+	--username root \
+	--password root \
+	--table din_test \
+	--delete-target-dir \
+	--split-by id \
+	--target-dir '/sqoop/import_split' \
+	--fields-terminated-by '|' \
+	--lines-terminated-by ';' \
+	--optionally-enclosed-by '\"'
+	```
 
