@@ -157,9 +157,8 @@ sqoop import \
 	**--compress  to we can use file**
 ```
 # Fileds/Lines Termianted
-If directory exists delete and add new data
-```
-sqoop import \
+
+```sqoop import \
 	--connect jdbc:mysql://localhost:3306/sqoopdb \
 	--username root \
 	--password root \
