@@ -156,6 +156,7 @@ sqoop import \
 	--as-sequencefile  
 	**--compress  to we can use file**
 ```
+
 # Fileds/Lines Termianted
 
 ```sqoop import \
@@ -169,8 +170,11 @@ sqoop import \
 	--fields-terminated-by '|' \
 	--lines-terminated-by ';' \
 	--optionally-enclosed-by '\"'
+	
 	```
+	
 # Filter codn
+
 ```sqoop import \
 	--connect jdbc:mysql://localhost:3306/sqoopdb \
 	--username root \
