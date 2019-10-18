@@ -24,3 +24,19 @@ sqoop create-hive-table \
 	--hive-table partial_patients \
 	--table patients \
 ```
+
+
+# Create hive table and data import
+```
+sqoop import \
+	--connect jdbc:mysql://localhost:3306/sqoopdb \
+	--username root \
+	--password root \
+	--table patients \
+	--hive-database exercises \
+	--hive-table test_tbl \
+	--hive-table sqooptest.patients \
+	--create-hive-table \
+	--hive-import \
+         -m 1 ;
+```
