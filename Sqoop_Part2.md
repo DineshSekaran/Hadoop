@@ -14,6 +14,8 @@
          -m 1 \
 	
 # Create hive table 
+
+
 sqoop create-hive-table \
 	--connect jdbc:mysql://localhost:3306/sqoopdb \
 	--username root \
@@ -21,3 +23,4 @@ sqoop create-hive-table \
 	--hive-database exercises \
 	--hive-table partial_patients \
 	--table patients \
+```
