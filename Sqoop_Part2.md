@@ -12,3 +12,15 @@
 	--hive-import \
          -m 1 
 	 ```
+
+# Create Hive using Sqoop from MysqlSqoopdb 
+
+```
+sqoop create-hive-table \
+	--connect jdbc:mysql://localhost:3306/sqoopdb \
+	--username root \
+	--password root \
+	--hive-database exercises \
+	--hive-table partial_patients \
+	--table patients \
+```
