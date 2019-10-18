@@ -40,7 +40,7 @@ sqoop import \
 	--hive-import \
          -m 1 ;
 ```
-# Import all Tables
+# Import all Tables with exclude option
 ```
 sqoop import-all-tables \
 	--connect jdbc:mysql://localhost:3306/sqoopdb \
