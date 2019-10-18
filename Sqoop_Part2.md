@@ -1,5 +1,4 @@
 # Import to Hive 
-
 ```sqoop import \
 	--connect jdbc:mysql://localhost:3306/sqoopdb \
 	--username root \
@@ -10,13 +9,12 @@
 	--hive-table sqooptest.din_test \
 	--create-hive-table \
 	--hive-import \
-         -m 1 
+         -m 1 \
 	 ```
 
-# Create Hive using Sqoop from MysqlSqoopdb 
+#  Create Hive using Sqoop from MysqlSqoopdb 
 
-```
-sqoop create-hive-table \
+```sqoop create-hive-table \
 	--connect jdbc:mysql://localhost:3306/sqoopdb \
 	--username root \
 	--password root \
