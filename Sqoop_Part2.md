@@ -40,3 +40,12 @@ sqoop import \
 	--hive-import \
          -m 1 ;
 ```
+# Import all Tables
+```
+sqoop import-all-tables \
+	--connect jdbc:mysql://localhost:3306/sqoopdb \
+	--username root \
+	--password root \
+	--autoreset-to-one-mapper \
+	--exclude-tables patients_exclude,patients_export
+```
