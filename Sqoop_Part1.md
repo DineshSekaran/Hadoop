@@ -3,7 +3,8 @@
 ****sqoopdb---> Database Name****
 
 ****Port-->3306****
-**SQoop import file types will part-m-00000**
+
+**SQoop import file types will part-m-00000** Default Mapper 4
 
 ****Ref URL http://sqoop.apache.org/docs/1.4.2/SqoopUserGuide.html#_purpose_11****
 # List Tables
