@@ -142,7 +142,7 @@ sqoop import \
 	--target-dir '/sqoop/import_columns' \
 	--as-sequencefile;         -----------> File Formate
 ```	
-# Passing PAssword as Runtime
+# Passing Password as Runtime and Filetype is compress (it can be given Hadoop supported File System)
 ```
 sqoop import \
 	--connect jdbc:mysql://localhost:3306/sqoopdb \
