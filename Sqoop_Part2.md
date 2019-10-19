@@ -49,3 +49,16 @@ sqoop import-all-tables \
 	--autoreset-to-one-mapper \
 	--exclude-tables patients_exclude,patients_export
 ```
+# Import to hive
+```
+sqoop import \
+	--connect jdbc:mysql://localhost:3306/sqoopdb \
+	--username root \
+	--password root \
+	--query "select * from patients where gender = 'm' AND \$CONDITIONS" \
+	--hive-table patienthive \
+	--hive-import \
+--delete-target-dir \
+--target-dir '/user/hive/warehouse/patienthive/' \
+	--m 1 
+```
