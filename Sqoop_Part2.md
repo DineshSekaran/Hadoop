@@ -75,7 +75,7 @@ sqoop import \
 -hive-overwrite \
 	--m 1 
 ```	
-# Hive Incremental
+# Hive Incremental Append
 ```
 sqoop import \
 	--connect jdbc:mysql://localhost:3306/sqoopdb \
@@ -121,7 +121,7 @@ op:
 19/10/19 09:43:45 INFO mapreduce.ExportJobBase: Transferred 981 bytes in 129.5031 seconds (7.5751 bytes/sec)
 19/10/19 09:43:45 INFO mapreduce.ExportJobBase: Exported 6 records.
 ```
-# Static Incremental
+# Hive Incremental Last Modified(Static)
 ```
 sqoop import \
 	--connect jdbc:mysql://localhost:3306/sqoopdb \
