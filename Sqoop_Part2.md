@@ -88,3 +88,6 @@ sqoop import \
 	--check-column id \
 	--last-value 25 
 ```
+
+# Mysql to Hive import and export to Mysql
+
