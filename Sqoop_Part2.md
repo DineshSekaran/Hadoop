@@ -100,6 +100,15 @@ sqoop import \
 	--num-mappers 1 \
 	--where "drug='metacin'" \
 	--target-dir '/sqoop/import_where'
+op:
+19/10/19 09:38:46 INFO mapreduce.ImportJobBase: Transferred 135 bytes in 39.156 seconds (3.4478 bytes/sec)
+19/10/19 09:38:46 INFO mapreduce.ImportJobBase: Retrieved 6 records.
+
+jpasolutions@ubuntu:~$ hdfs dfs -ls /sqoop/import_where
+Found 2 items
+-rw-r--r--   3 jpasolutions supergroup          0 2019-10-19 09:38 /sqoop/import_where/_SUCCESS
+-rw-r--r--   3 jpasolutions supergroup        135 2019-10-19 09:38 /sqoop/import_where/part-m-00000
+
 
 sqoop export \
 	--connect jdbc:mysql://localhost:3306/sqoopdb \
@@ -107,8 +116,8 @@ sqoop export \
 	--password root \
 	--table patients_export \
 	--export-dir /sqoop/import_where/
-```
+
 op:
 19/10/19 09:43:45 INFO mapreduce.ExportJobBase: Transferred 981 bytes in 129.5031 seconds (7.5751 bytes/sec)
 19/10/19 09:43:45 INFO mapreduce.ExportJobBase: Exported 6 records.
-
+```
