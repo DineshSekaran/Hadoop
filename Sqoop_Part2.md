@@ -121,7 +121,7 @@ op:
 19/10/19 09:43:45 INFO mapreduce.ExportJobBase: Transferred 981 bytes in 129.5031 seconds (7.5751 bytes/sec)
 19/10/19 09:43:45 INFO mapreduce.ExportJobBase: Exported 6 records.
 ```
-# Dynamic Incremental
+# Static Incremental
 ```
 sqoop import \
 	--connect jdbc:mysql://localhost:3306/sqoopdb \
