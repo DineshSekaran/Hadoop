@@ -62,3 +62,16 @@ sqoop import \
 --target-dir '/user/hive/warehouse/patienthive/' \
 	--m 1 
 ```
+# Hive Overwrite
+```
+sqoop import \
+	--connect jdbc:mysql://localhost:3306/sqoopdb \
+	--username root \
+	--password root \
+	--query "select * from patients where gender = 'f' AND \$CONDITIONS" \
+	--hive-table patienthive \
+	--hive-import \
+--target-dir '/sqoop/import_hive_tmp' \
+-hive-overwrite \
+	--m 1 
+```	
