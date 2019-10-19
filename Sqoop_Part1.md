@@ -7,6 +7,8 @@
 **SQoop import file types will part-m-00000** Default Mapper 4
 
 ****Ref URL http://sqoop.apache.org/docs/1.4.2/SqoopUserGuide.html#_purpose_11****
+
+##Below Import on HDFS Directory Samples
 # List Tables
 ```
 sqoop list-tables \
