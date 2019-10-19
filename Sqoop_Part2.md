@@ -75,3 +75,16 @@ sqoop import \
 -hive-overwrite \
 	--m 1 
 ```	
+# Hive Incremental
+```
+sqoop import \
+	--connect jdbc:mysql://localhost:3306/sqoopdb \
+	--username root \
+	--password root \
+	--table patients \
+	--num-mappers 1 \
+	--target-dir '/sqoop/import_plain/' \
+	--incremental append \
+	--check-column id \
+	--last-value 25 
+```
