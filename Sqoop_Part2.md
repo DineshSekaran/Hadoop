@@ -121,5 +121,19 @@ op:
 19/10/19 09:43:45 INFO mapreduce.ExportJobBase: Transferred 981 bytes in 129.5031 seconds (7.5751 bytes/sec)
 19/10/19 09:43:45 INFO mapreduce.ExportJobBase: Exported 6 records.
 ```
-## Dynamic Incremental 
+# Dynamic Incremental
+```
+sqoop import \
+	--connect jdbc:mysql://localhost:3306/sqoopdb \
+	--username root \
+	--password root \
+	--table patients_ts \
+	--num-mappers 1 \
+	--target-dir '/sqoop/import_patients_with_timestamp/' \
+	--incremental lastmodified \
+	--check-column createdts \
+	--last-value "2017-05-20 07:22:16.0" \
+	--append
+	```
+##Dynamic Incremental 
 https://stackoverflow.com/questions/34771407/how-can-we-automate-incremental-import-in-sqoop
