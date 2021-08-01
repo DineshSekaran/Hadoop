@@ -38,3 +38,8 @@ hdfs dfs -rm /hello_copy.txt
 
 # View all filesystem HDFS commands #
 hdfs dfs
+
+# Place file from Local to Hdfs
+
+hdfs dfs -put /home/tamilboomi/Desktop/hive/*.txt /user/tamilboomi/Hive/
+
