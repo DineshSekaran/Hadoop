@@ -17,3 +17,11 @@ stored as textfile;-------------->input and output Stream----->MApreduce
 HDFS-------------->TEXT(Record Reader)-------->MEMory and Breaking down into pieces using jar
       I/P
 ```
+
+
+# Compression on intermediate level(MApper/Reducer)
+
+set hive.exec.compress.output=true;
+hive> set mapreduce.output.fileoutputformat.compress=true;
+
+$ hive --hiveconf hive.exec.compress.output=true hive.exec.compress.intermediate=true
