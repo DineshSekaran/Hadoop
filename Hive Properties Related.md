@@ -37,22 +37,22 @@ OK
 Time taken: 0.704 seconds
 
 
-## no Partitions listed
-hive> show partitions user_info_part1;
-OK
-Time taken: 1.156 seconds
+                     ## no Partitions listed
+                      hive> show partitions user_info_part1;
+                      OK
+                      Time taken: 1.156 seconds
 
 
 
-## After MSCK it shows and updated metastore
-hive> msck repair table user_info_part1;
-OK
-Partitions not in metastore:	user_info_part1:ds=2016-03-12	user_info_part1:ds=2018-05-08	user_info_part1:ds=2021-09-17
-Repair: Added partition to metastore user_info_part1:ds=2016-03-12
-Repair: Added partition to metastore user_info_part1:ds=2018-05-08
-Repair: Added partition to metastore user_info_part1:ds=2021-09-17
-Time taken: 1.181 seconds, Fetched: 4 row(s)
-hive> 
+                      ## After MSCK it shows and updated metastore
+                     hive> msck repair table user_info_part1;
+                     OK
+                     Partitions not in metastore:	user_info_part1:ds=2016-03-12	user_info_part1:ds=2018-05-08	user_info_part1:ds=2021-09-17
+                     Repair: Added partition to metastore user_info_part1:ds=2016-03-12
+                     Repair: Added partition to metastore user_info_part1:ds=2018-05-08
+                     Repair: Added partition to metastore user_info_part1:ds=2021-09-17
+                     Time taken: 1.181 seconds, Fetched: 4 row(s)
+                     hive> 
 
 
 # Hive Static Partition
