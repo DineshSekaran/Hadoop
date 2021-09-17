@@ -59,4 +59,6 @@ ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ','
 select * from tbtest.city where countrycode = 'PHL';
 
+# Hive Array Split
 
+https://community.cloudera.com/t5/Support-Questions/Hive-Split-for-columns/td-p/194255
