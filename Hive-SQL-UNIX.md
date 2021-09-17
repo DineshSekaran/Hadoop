@@ -47,6 +47,16 @@ hive> ! ls /home/tamilboomi/Desktop/Hive/;
 hive> dfs -put /home/tamilboomi/Desktop/Hive/user_info.txt /user/tamilboomi/user_info/;
 
 
+#  Exporting Data
+================================
+ 
+Linux> hive -e "select * from tbtest.city where countrycode = 'PHL'" > /home/tamilboomi/Desktop/hive_export/city_op.txt
+syntax:  hive -e 'query' > destination_path
 
+
+hive> INSERT [OVERWRITE] [LOCAL] DIRECTORY '/home/tamilboomi/Desktop/hive_export' 
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+select * from tbtest.city where countrycode = 'PHL';
 
 
