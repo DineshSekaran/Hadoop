@@ -27,7 +27,7 @@ TBLPROPERTIES ('external.table.purge'='true');
 
 # MSCK REPAIR TABLE tablename
 
-i have data in partitioned way. so i hae created table on top of that. 
+i have data in partitioned way. so i have created table on top of that. 
 
 CREATE EXTERNAL TABLE IF NOT EXISTS tbtest.user_info_part1(user_id string, firstname string, lastname string)
     > COMMENT 'A partitened copy of user_info'
@@ -37,14 +37,14 @@ OK
 Time taken: 0.704 seconds
 
 
-
+## no Partitions listed
 hive> show partitions user_info_part1;
 OK
 Time taken: 1.156 seconds
 
 
 
-
+## After MSCK it shows and updated metastore
 hive> msck repair table user_info_part1;
 OK
 Partitions not in metastore:	user_info_part1:ds=2016-03-12	user_info_part1:ds=2018-05-08	user_info_part1:ds=2021-09-17
