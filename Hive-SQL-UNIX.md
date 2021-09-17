@@ -41,7 +41,10 @@ hive> ! hive -f get_parms_hive_records.hql -hiveconf tablename=customers -hiveco
 
 ```
 
+# Using hive shell list the dircetory and put the files
 
+hive> ! ls /home/tamilboomi/Desktop/Hive/;
+hive> dfs -put /home/tamilboomi/Desktop/Hive/user_info.txt /user/tamilboomi/user_info/;
 
 
 
