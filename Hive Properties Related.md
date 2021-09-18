@@ -54,6 +54,20 @@ Time taken: 0.704 seconds
                      Time taken: 1.181 seconds, Fetched: 4 row(s)
                      hive> 
 
+              # Table with location pointed. so creating directory and palcing file.in that case need to use msck repair otherwise it wont consider.
+              
+               hdfs dfs -mkdir /user/tamilboomi/user_info_part/ds=2021-09-18
+              hdfs dfs -put /home/tamilboomi/Desktop/Hive/user_info.txt /user/tamilboomi/user_info_part/ds=2021-09-18
+
+
+               msck repair table user_info_part_t;
+               OK
+               Partitions not in metastore:	user_info_part_t:ds=2021-09-18
+               Repair: Added partition to metastore user_info_part_t:ds=2021-09-18
+               Time taken: 0.567 seconds, Fetched: 2 row(s)
+
+The newly added directory partitioned is got refreshed.
+
 
 # Hive Static Partition
 ```
