@@ -14,6 +14,8 @@ customers.customer_id	customers.customer_name	customers.total_orders
 ```
 SET hive.exec.dynamic.partition=true; 
 set hive.exec.dynamic.partition.mode=nonstrict;
+
+SET hive.optimize.sort.dynamic.partition=true;        # to overcome mapreduce resource issue
 ```
 # To display DB in prompt shell
 ```
