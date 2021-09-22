@@ -81,3 +81,13 @@ set hive.mapred.mode = strict
 hive> set hive.metastore.warehouse.dir;
 hive.metastore.warehouse.dir=/user/hive/warehouse
 ```
+
+
+#  Modes 
+================================
+
+## interactive mode
+Linux> hive -e 'select * from test.store_day_sale'
+
+## non-interactive mode:
+Linux> hive -f script1.hql
