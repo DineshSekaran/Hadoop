@@ -75,6 +75,10 @@ The newly added directory partitioned is got refreshed.
 ```
 set hive.mapred.mode = strict 
 ```
+# Cartesian Join
+set hive.mapred.mode = nonstrict . it will work when mode is nonstrict
+
+
 
 # To See the location of hive Path
 ```
