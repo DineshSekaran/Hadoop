@@ -62,3 +62,12 @@ select * from tbtest.city where countrycode = 'PHL';
 # Hive Array Split
 
 https://community.cloudera.com/t5/Support-Questions/Hive-Split-for-columns/td-p/194255
+
+
+# Linux commands on Hive Shell
+
+## To List
+hive> ! ls /home/tamilboomi/Desktop/Hive/;
+
+## To Put file 
+hive> dfs -put /home/tamilboomi/Desktop/Hive/user_info.txt /user/tamilboomi/user_info/;
