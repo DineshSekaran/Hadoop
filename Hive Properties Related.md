@@ -91,3 +91,12 @@ Linux> hive -e 'select * from test.store_day_sale'
 
 ## non-interactive mode:
 Linux> hive -f script1.hql
+
+# MapJoin
+
+hive> set hive.auto.convert.join=true;--> hive will perform the mapjoin automatically
+
+hive> set hive.auto.convert.join=false;   --> Add mapjoin mnually as below
+
+Select /*+ Mapjoin(city_cc) */  city.*,city_cc.country
+From city join city_cc on (city.countrycode = city_cc.countrycode);
