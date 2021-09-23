@@ -3,7 +3,7 @@ Text File is a default storage format. You can use the text format to interchang
 Data is stored in lines, with each line being a record. Each lines are terminated by a newline character (\n).
 
 Sequence File stored in a binary storage format consisting of binary key value pairs.
-sequence is very for MR to process.
+sequence file is very opt for MR to process.
 
 RC File stores columns of a table in a record columnar format rather than row oriented fashion  and provides considerable compression .
 
