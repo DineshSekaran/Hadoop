@@ -329,3 +329,11 @@ dfs -ls /user/hive/warehouse/address_buckets/;
 
 dfs -cat /user/hive/warehouse/address_buckets/000000_0;
 ```
+
+# Sort By Order BY
+
+Sort by --> sorting hppens on reducer level ,Each Reducer
+
+Order By --> Globally ordering will happen but degrade performance
+
+https://sqlrelease.com/sort-by-order-by-distribute-by-and-cluster-by-in-hive
